@@ -1,0 +1,34 @@
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+.env
+.venv
+venv/
+ENV/
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Local configs
+*.local
+*.env
