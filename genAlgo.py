@@ -1,4 +1,7 @@
 import random
+import matplotlib.pyplot as plt
+plt.ion()  # Interactive mode ON
+fig, ax = plt.subplots(figsize=(14,6))
 
 PATTERN = ["hammer", "bullish_engulfing", "bearish_engulfing", "piercing", "dark_cloud_cover"]
 def createPopulation(pop, steps):
@@ -120,23 +123,25 @@ def run(df, generations_size, population_size, steps, mutation_chance, crossover
 
     best_global = None
     best_global_fit = float("-inf")
+    history = []  # Fitness-Verlauf
 
     for gen in range(generations_size):
         new_population = []
 
+        # Fitness auswerten
         fitness_values = [(fitness(ind, df), ind) for ind in population]
-
-        # Sortiert nach Fitness absteigend
         fitness_values.sort(key=lambda x: x[0], reverse=True)
 
         best = fitness_values[0][1]
         best_fit = fitness_values[0][0]
+        history.append(best_fit)
 
         if best_fit > best_global_fit:
             best_global = best.copy()
             best_global_fit = best_fit
 
         print(f"Generation {gen+1}: Best Fitness = {best_fit:.2f} Strategy = {best}")
+
 
         new_population.append(best.copy())
 
@@ -154,15 +159,7 @@ def run(df, generations_size, population_size, steps, mutation_chance, crossover
 
         population = new_population
 
-    print("BEST STRATEGY EVER:", best_global)
+    print("\nBEST STRATEGY EVER:", best_global)
     print("FITNESS:", best_global_fit)
 
-    return best_global, best_global_fit
-
-
-
-
-
-
-
-
+    return best_global, best_global_fit, history

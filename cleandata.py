@@ -9,7 +9,7 @@ def getDf():
     df = pd.read_csv("Data/nvidia_daily.csv")
     droppableColumns = ["Plot", "Plot.1", "Plot.2", "Plot.3"]
     df.drop(droppableColumns, axis=1, inplace=True)
-    df = df[(df["time"] >= "2023-01-01") & (df["time"] <= "2024-01-01")]
+    df = df[(df["time"] >= "2022-01-01") & (df["time"] <= "2024-01-01")]
     detect_patterns(df)
     return df
 
